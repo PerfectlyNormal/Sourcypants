@@ -18,12 +18,12 @@ namespace Blunder.SourceMap
 
         public MappingSegment(int generatedLineIndex, string encodedFields) 
         {
-            this.GeneratedLineIndex = generatedLineIndex;
-            this.GeneratedColumnIndex = VlqDecoder.Decode(ref encodedFields);
-            this.SourcesIndex = GetNextValue(ref encodedFields);
-            this.SourceLineIndex = GetNextValue(ref encodedFields);
-            this.SourceColumnIndex = GetNextValue(ref encodedFields);
-            this.NamesIndex = GetNextValue(ref encodedFields);
+            GeneratedLineIndex = generatedLineIndex;
+            GeneratedColumnIndex = VlqDecoder.Decode(ref encodedFields);
+            SourcesIndex = GetNextValue(ref encodedFields);
+            SourceLineIndex = GetNextValue(ref encodedFields);
+            SourceColumnIndex = GetNextValue(ref encodedFields);
+            NamesIndex = GetNextValue(ref encodedFields);
         }
 
         private static int? GetNextValue(ref string encoded)

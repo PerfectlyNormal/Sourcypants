@@ -4,14 +4,14 @@ namespace Blunder.SourceMap.Utils
 {
     public static class VlqDecoder
     {
-        private const byte VLQ_BASE_SHIFT = 5;
-        private const byte VLQ_BASE = 1 << VLQ_BASE_SHIFT;
-        private const byte VLQ_BASE_MASK = VLQ_BASE - 1;
-        private const byte VLQ_CONTINUATION_BIT = VLQ_BASE;
+        private const byte VlqBaseShift = 5;
+        private const byte VlqBase = 1 << VlqBaseShift;
+        private const byte VlqBaseMask = VlqBase - 1;
+        private const byte VlqContinuationBit = VlqBase;
 
         public static int Decode(ref string encoded)
         {
-            int result = 0;
+            var result = 0;
             var encodedLength = encoded.Length;
             var encodedIdx = 0;
             var isContinued = true;
@@ -25,11 +25,11 @@ namespace Blunder.SourceMap.Utils
                 }
 
                 var b = Base64.Decode(encoded[encodedIdx++]);
-                isContinued = (b & VLQ_CONTINUATION_BIT) == VLQ_CONTINUATION_BIT;
+                isContinued = (b & VlqContinuationBit) == VlqContinuationBit;
 
-                var digit = b & VLQ_BASE_MASK;
+                var digit = b & VlqBaseMask;
                 result = result + (digit << shift);
-                shift += VLQ_BASE_SHIFT;
+                shift += VlqBaseShift;
             }
             while (isContinued);
 

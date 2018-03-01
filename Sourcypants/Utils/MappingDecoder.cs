@@ -5,7 +5,7 @@ namespace Blunder.SourceMap.Utils
 {
     public class MappingDecoder
     {
-        static MappingDecoder _defaultDecoder;
+        private static MappingDecoder _defaultDecoder;
         public static MappingDecoder Default
         {
             get => _defaultDecoder ?? (_defaultDecoder = new MappingDecoder());
@@ -25,16 +25,12 @@ namespace Blunder.SourceMap.Utils
         public virtual MappingGroup GetMappingGroup(int generatedLineIndex, string encoded)
         {
             if (string.IsNullOrEmpty(encoded))
-            {
                 return new MappingGroup();
-            }
-            else
+            
+            return new MappingGroup
             {
-                return new MappingGroup
-                {
-                    Segments = GetMappingSegments(generatedLineIndex, encoded)
-                };
-            }
+                Segments = GetMappingSegments(generatedLineIndex, encoded)
+            };
         }
 
         public virtual IList<MappingSegment> GetMappingSegments(int generatedLineIndex, string encoded)
@@ -51,7 +47,7 @@ namespace Blunder.SourceMap.Utils
             return new MappingSegment(generatedLineIndex, encoded);
         }
 
-        public static void FixUpGroupSegmentOffsets(List<MappingGroup> groups)
+        public static void FixUpGroupSegmentOffsets(IEnumerable<MappingGroup> groups)
         {
             int? lastSourcesIndex = null;
             int? lastSourceLineIndex = null;

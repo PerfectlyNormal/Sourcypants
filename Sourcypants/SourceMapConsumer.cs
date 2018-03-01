@@ -36,7 +36,7 @@ namespace Blunder.SourceMap
             {
                 throw new ArgumentNullException(nameof(file));
             }
-            else if (file.Version != 3)
+            if (file.Version != 3)
             {
                 throw new ArgumentException("Unsupported version: " + file.Version);
             }
