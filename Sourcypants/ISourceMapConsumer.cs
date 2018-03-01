@@ -2,6 +2,6 @@
 {
     public interface ISourceMapConsumer
     {
-        SourceReference[] OriginalPositionsFor(int line);
+        SourceReference[] OriginalPositionsFor(int line, int col);
     }
 }

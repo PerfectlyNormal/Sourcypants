@@ -52,39 +52,50 @@ namespace Blunder.SourceMap
         /// </summary>
         /// <param name="line">The 1-based line number of the generated source for which the set of
         /// original source lines that contributed is required.</param>
+        /// <param name="col">The 0-based line number of the generated source for which the set of
+        /// original source lines that contributed is required.</param>
         /// <returns>An array of SourceReference objects representing the original source lines that correspond
         /// to the requested generated source line, or an empty array if no such lines exist.</returns>
-        public SourceReference[] OriginalPositionsFor(int line)
+        public SourceReference[] OriginalPositionsFor(int line, int col)
         {
             if (line <= 0)
-            {
                 throw new ArgumentOutOfRangeException(nameof(line), "must be greater than zero");
-            }
-            else if (line > _mappingGroups.Count)
-            {
+            if (col < 0)
+                throw new ArgumentOutOfRangeException(nameof(col), "must be greater than or equal to zero");
+            
+            if (line > _mappingGroups.Count)
                 return new SourceReference[0];
-            }
-
+            
             var generatedLine = _mappingGroups[line - 1];
 
             if (generatedLine.Segments == null || !generatedLine.Segments.Any())
             {
                 return new SourceReference[0];
             }
-            else
-            {
-                return 
-                    generatedLine
-                    .Segments
-                    .Where(x => x.SourceLineIndex.HasValue)
-                    .Select(x => new SourceReference
-                    {
-                        File = x.SourcesIndex.HasValue ? _file.Sources[x.SourcesIndex.Value] : _file.File,
-                        LineNumber = x.SourceLineIndex.Value + 1
-                    })
-                    .Distinct(new SourceReferenceEqualityComparer())
-                    .ToArray();
-            }
+            
+            return generatedLine
+                .Segments
+                .Where(x => x.SourceLineIndex.HasValue)
+                .Where(x => x.GeneratedColumnIndex == col)
+                .Select(x => new SourceReference
+                {
+                    File = FileName(x.SourcesIndex),
+                    LineNumber = (x.SourceLineIndex ?? 0) + 1,
+                    Column = x.SourceColumnIndex ?? 0,
+                    MethodName = x.NamesIndex.HasValue ? _file.Names[x.NamesIndex.Value] : null
+                })
+                .Distinct(new SourceReferenceEqualityComparer())
+                .ToArray();
+        }
+
+        private string FileName(int? sourceIndex)
+        {
+            var filename = sourceIndex.HasValue ? _file.Sources[sourceIndex.Value] : _file.File;
+
+            if (!string.IsNullOrEmpty(_file.SourceRoot))
+                return string.Join("/", _file.SourceRoot, filename);
+            
+            return filename;
         }
     }
 }

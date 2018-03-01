@@ -6,7 +6,7 @@ namespace Blunder.SourceMap.Utils.Comparers
     {
         public bool Equals(SourceReference x, SourceReference y)
         {
-            return x.LineNumber == y.LineNumber && x.File == y.File;
+            return x.LineNumber == y.LineNumber && x.Column == y.Column && x.File == y.File;
         }
 
         public int GetHashCode(SourceReference obj)

@@ -1,4 +1,4 @@
-﻿namespace Blunder.SourceMap
+namespace Blunder.SourceMap
 {
     /// <summary>
     /// Represents a reference to a particular position in a specified source file.
@@ -14,6 +14,11 @@
         /// Gets or sets the line number within the file.
         /// </summary>
         public int LineNumber { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the column within the file
+        /// </summary>
+        public int Column { get; set; }
 
         public override string ToString()
         {
