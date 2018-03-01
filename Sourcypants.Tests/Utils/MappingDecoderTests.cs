@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Blunder.SourceMap.Utils;
+using Sourcypants.Utils;
 using Moq;
 using NUnit.Framework;
 
-namespace Blunder.SourceMap.Tests.Utils
+namespace Sourcypants.Tests.Utils
 {
     [TestFixture]
     public class MappingDecoderTests
@@ -30,7 +30,7 @@ namespace Blunder.SourceMap.Tests.Utils
             decoderMock.CallBase = true;
 
             var exampleSegment = new MappingSegment(1, "A");
-            
+
             decoderMock
                 .Setup(x => x.GetMappingSegment(It.IsAny<int>(), It.IsAny<string>()))
                 .Returns(exampleSegment);
@@ -51,7 +51,7 @@ namespace Blunder.SourceMap.Tests.Utils
             var decoderMock = new Mock<MappingDecoder>();
             decoderMock.CallBase = true;
 
-            var segments = new[] 
+            var segments = new[]
             {
                 new MappingSegment(1, "A"),
                 new MappingSegment(2, "B")
@@ -93,7 +93,7 @@ namespace Blunder.SourceMap.Tests.Utils
         [Test]
         public void FixUpGroupSegmentOffsets_TalliesLastGeneratedColumnIndex_ResettingAtEachGroup()
         {
-            var groups = new List<MappingGroup> 
+            var groups = new List<MappingGroup>
             {
                 GetGroup(new MappingSegment { GeneratedColumnIndex = 2 }, new MappingSegment { GeneratedColumnIndex = 5 }),
                 GetGroup(new MappingSegment { GeneratedColumnIndex = 1 }, new MappingSegment { GeneratedColumnIndex = 3 })
@@ -110,7 +110,7 @@ namespace Blunder.SourceMap.Tests.Utils
         [Test]
         public void FixUpGroupSegmentOffsets_TalliesSourcesIndices()
         {
-            var groups = new List<MappingGroup> 
+            var groups = new List<MappingGroup>
             {
                 GetGroup(new MappingSegment { SourcesIndex = 1 }, new MappingSegment { SourcesIndex = 4 }),
                 GetGroup(new MappingSegment { SourcesIndex = null }, new MappingSegment { SourcesIndex = 3 })
@@ -127,7 +127,7 @@ namespace Blunder.SourceMap.Tests.Utils
         [Test]
         public void FixUpGroupSegmentOffsets_TalliesSourceLineIndices()
         {
-            var groups = new List<MappingGroup> 
+            var groups = new List<MappingGroup>
             {
                 GetGroup(new MappingSegment { SourceLineIndex = 1 }, new MappingSegment { SourceLineIndex = 4 }),
                 GetGroup(new MappingSegment { SourceLineIndex = null }, new MappingSegment { SourceLineIndex = 3 })
@@ -144,7 +144,7 @@ namespace Blunder.SourceMap.Tests.Utils
         [Test]
         public void FixUpGroupSetmentOffsets_TalliesSourceColumnIndices()
         {
-            var groups = new List<MappingGroup> 
+            var groups = new List<MappingGroup>
             {
                 GetGroup(new MappingSegment { SourceColumnIndex = 1 }, new MappingSegment { SourceColumnIndex = 4 }),
                 GetGroup(new MappingSegment { SourceColumnIndex = null }, new MappingSegment { SourceColumnIndex = 3 })
@@ -161,7 +161,7 @@ namespace Blunder.SourceMap.Tests.Utils
         [Test]
         public void FixUpGroupSetmentOffsets_TalliesNamesIndices()
         {
-            var groups = new List<MappingGroup> 
+            var groups = new List<MappingGroup>
             {
                 GetGroup(new MappingSegment { NamesIndex = 1 }, new MappingSegment { NamesIndex = 4 }),
                 GetGroup(new MappingSegment { NamesIndex = null }, new MappingSegment { NamesIndex = 3 })

@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace Blunder.SourceMap.Tests
+namespace Sourcypants.Tests
 {
     [TestFixture]
     public class SourceReferenceTests
@@ -8,7 +8,7 @@ namespace Blunder.SourceMap.Tests
         [Test]
         public void ToString_IncludesFilenameAndLineNumber()
         {
-            var reference = new SourceReference 
+            var reference = new SourceReference
             {
                 File = "The file",
                 LineNumber = 44,
@@ -17,11 +17,11 @@ namespace Blunder.SourceMap.Tests
 
             Assert.That(reference.ToString(), Is.EqualTo("The file:44:1"));
         }
-        
+
         [Test]
         public void ToString_IncludesMethodName()
         {
-            var reference = new SourceReference 
+            var reference = new SourceReference
             {
                 File = "The file",
                 LineNumber = 44,

@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace Blunder.SourceMap.Tests
+namespace Sourcypants.Tests
 {
     [TestFixture]
     public class MappingSegmentTests

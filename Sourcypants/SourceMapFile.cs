@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Blunder.SourceMap
+namespace Sourcypants
 {
     /// <summary>
     /// Deserialisation container for source map version 3 files

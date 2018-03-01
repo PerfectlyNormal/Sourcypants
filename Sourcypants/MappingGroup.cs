@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Blunder.SourceMap
+namespace Sourcypants
 {
     public class MappingGroup
     {

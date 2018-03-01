@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Blunder.SourceMap.Utils
+namespace Sourcypants.Utils
 {
     public static class VlqDecoder
     {

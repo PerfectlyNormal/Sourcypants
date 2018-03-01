@@ -1,6 +1,6 @@
-﻿using Blunder.SourceMap.Utils;
+﻿using Sourcypants.Utils;
 
-namespace Blunder.SourceMap
+namespace Sourcypants
 {
     public class MappingSegment
     {
@@ -16,7 +16,7 @@ namespace Blunder.SourceMap
 
         }
 
-        public MappingSegment(int generatedLineIndex, string encodedFields) 
+        public MappingSegment(int generatedLineIndex, string encodedFields)
         {
             GeneratedLineIndex = generatedLineIndex;
             GeneratedColumnIndex = VlqDecoder.Decode(ref encodedFields);

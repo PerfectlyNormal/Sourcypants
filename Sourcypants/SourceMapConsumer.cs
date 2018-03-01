@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Blunder.SourceMap.Utils;
-using Blunder.SourceMap.Utils.Comparers;
+using Sourcypants.Utils;
+using Sourcypants.Utils.Comparers;
 using Newtonsoft.Json;
 
-namespace Blunder.SourceMap
+namespace Sourcypants
 {
     /// <summary>
     /// Reads and parses source map files and provides the ability to query mappings
@@ -62,17 +62,17 @@ namespace Blunder.SourceMap
                 throw new ArgumentOutOfRangeException(nameof(line), "must be greater than zero");
             if (col < 0)
                 throw new ArgumentOutOfRangeException(nameof(col), "must be greater than or equal to zero");
-            
+
             if (line > _mappingGroups.Count)
                 return new SourceReference[0];
-            
+
             var generatedLine = _mappingGroups[line - 1];
 
             if (generatedLine.Segments == null || !generatedLine.Segments.Any())
             {
                 return new SourceReference[0];
             }
-            
+
             return generatedLine
                 .Segments
                 .Where(x => x.SourceLineIndex.HasValue)
@@ -94,7 +94,7 @@ namespace Blunder.SourceMap
 
             if (!string.IsNullOrEmpty(_file.SourceRoot))
                 return string.Join("/", _file.SourceRoot, filename);
-            
+
             return filename;
         }
     }

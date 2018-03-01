@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using Blunder.SourceMap.Utils;
+using Sourcypants.Utils;
 using NUnit.Framework;
 
-namespace Blunder.SourceMap.Tests.Utils
+namespace Sourcypants.Tests.Utils
 {
     [TestFixture]
     public class Base64Tests
@@ -24,7 +24,7 @@ namespace Blunder.SourceMap.Tests.Utils
         public void Decode_ReturnsCorrectDecodes()
         {
             var base64Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".ToArray();
-            
+
             for (var i = 0; i < base64Chars.Length; i++)
             {
                 Assert.That(Base64.Decode(base64Chars[i]), Is.EqualTo(i));

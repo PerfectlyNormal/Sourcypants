@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Blunder.SourceMap.Utils
+namespace Sourcypants.Utils
 {
     public class MappingDecoder
     {
@@ -26,7 +26,7 @@ namespace Blunder.SourceMap.Utils
         {
             if (string.IsNullOrEmpty(encoded))
                 return new MappingGroup();
-            
+
             return new MappingGroup
             {
                 Segments = GetMappingSegments(generatedLineIndex, encoded)
@@ -35,7 +35,7 @@ namespace Blunder.SourceMap.Utils
 
         public virtual IList<MappingSegment> GetMappingSegments(int generatedLineIndex, string encoded)
         {
-            return 
+            return
                 encoded
                 .Split(',')
                 .Select(x => GetMappingSegment(generatedLineIndex, x))

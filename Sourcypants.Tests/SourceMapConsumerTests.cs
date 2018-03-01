@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Blunder.SourceMap.Utils;
+using Sourcypants.Utils;
 using Moq;
 using NUnit.Framework;
 
-namespace Blunder.SourceMap.Tests
+namespace Sourcypants.Tests
 {
     [TestFixture]
     public class SourceMapConsumerTests
@@ -100,7 +100,7 @@ namespace Blunder.SourceMap.Tests
         {
             // Force reset so we don't use the mocked decoder here
             MappingDecoder.Default = null;
-            
+
             var consumer = new SourceMapConsumer(new SourceMapFile()
             {
                 Version = 3,
@@ -161,7 +161,7 @@ namespace Blunder.SourceMap.Tests
 
             Assert.Throws(typeof(ArgumentOutOfRangeException), () => consumer.OriginalPositionsFor(-2, 0));
         }
-        
+
         [Test]
         public void OriginalPositionsFor_ThrowsArgumentOutOfRangeException_IfLineNumberEqualsZero()
         {
@@ -169,7 +169,7 @@ namespace Blunder.SourceMap.Tests
 
             Assert.Throws(typeof(ArgumentOutOfRangeException), () => consumer.OriginalPositionsFor(0, 0));
         }
-        
+
         [Test]
         public void OriginalPositionsFor_ThrowsArgumentOutOfRangeException_IfColumnLessThanZero()
         {

@@ -1,7 +1,7 @@
-﻿using Blunder.SourceMap.Utils.Comparers;
+﻿using Sourcypants.Utils.Comparers;
 using NUnit.Framework;
 
-namespace Blunder.SourceMap.Tests.Utils.Comparers
+namespace Sourcypants.Tests.Utils.Comparers
 {
     [TestFixture]
     public class SourceReferenceEqualityComparerTests
@@ -9,7 +9,7 @@ namespace Blunder.SourceMap.Tests.Utils.Comparers
         [Test]
         public void GetHashCode_ReturnsSameHashCodes_ForInstancesWithSameLineNumberAndFile()
         {
-            var ref1 = new SourceReference 
+            var ref1 = new SourceReference
             {
                 File = "File1",
                 LineNumber = 12
@@ -19,8 +19,8 @@ namespace Blunder.SourceMap.Tests.Utils.Comparers
             {
                 File = "File1",
                 LineNumber = 12
-            }; 
-            
+            };
+
             var comparer = new SourceReferenceEqualityComparer();
 
             Assert.That(comparer.GetHashCode(ref1), Is.EqualTo(comparer.GetHashCode(ref2)));

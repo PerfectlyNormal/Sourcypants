@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Blunder.SourceMap.Utils
+namespace Sourcypants.Utils
 {
     public static class Base64
     {

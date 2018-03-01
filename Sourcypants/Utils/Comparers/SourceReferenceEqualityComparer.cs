@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Blunder.SourceMap.Utils.Comparers
+namespace Sourcypants.Utils.Comparers
 {
     public class SourceReferenceEqualityComparer : IEqualityComparer<SourceReference>
     {

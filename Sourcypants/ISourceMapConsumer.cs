@@ -1,4 +1,4 @@
-﻿namespace Blunder.SourceMap
+﻿namespace Sourcypants
 {
     public interface ISourceMapConsumer
     {

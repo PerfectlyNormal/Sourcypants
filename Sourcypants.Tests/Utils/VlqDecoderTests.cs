@@ -1,8 +1,8 @@
 ﻿using System;
-using Blunder.SourceMap.Utils;
+using Sourcypants.Utils;
 using NUnit.Framework;
 
-namespace Blunder.SourceMap.Tests.Utils
+namespace Sourcypants.Tests.Utils
 {
     [TestFixture]
     public class VlqDecoderTests
