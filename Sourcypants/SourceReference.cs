@@ -19,10 +19,20 @@ namespace Blunder.SourceMap
         /// Gets or sets the column within the file
         /// </summary>
         public int Column { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the original method name
+        /// </summary>
+        public string MethodName { get; set; }
 
         public override string ToString()
         {
-            return string.Format("{0}:{1}", File, LineNumber);
+            var result = string.Format("{0}:{1}:{2}", File, LineNumber, Column);
+
+            if (!string.IsNullOrEmpty(MethodName))
+                result += $"#{MethodName}";
+
+            return result;
         }
     }
 }
