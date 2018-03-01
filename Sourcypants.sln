@@ -1,0 +1,31 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2006
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sourcypants", "Sourcypants\Sourcypants.csproj", "{4AA23778-69FC-4030-931E-5820236F4F0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sourcypants.Tests", "Sourcypants.Tests\Sourcypants.Tests.csproj", "{01C0EE28-2C06-4AA5-8FBA-99280DA42F8D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4AA23778-69FC-4030-931E-5820236F4F0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AA23778-69FC-4030-931E-5820236F4F0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AA23778-69FC-4030-931E-5820236F4F0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AA23778-69FC-4030-931E-5820236F4F0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01C0EE28-2C06-4AA5-8FBA-99280DA42F8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01C0EE28-2C06-4AA5-8FBA-99280DA42F8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01C0EE28-2C06-4AA5-8FBA-99280DA42F8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01C0EE28-2C06-4AA5-8FBA-99280DA42F8D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CF0C27FF-07AD-4E28-B5C6-864B36937FA7}
+	EndGlobalSection
+EndGlobal
