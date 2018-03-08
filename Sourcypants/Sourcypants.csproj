@@ -1,6 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Per Christian B. Viken</Authors>
+    <Copyright>Copyright (c) 2018 Per Christian B. Viken</Copyright>
+    <PackageProjectUrl>https://www.blunderify.se/</PackageProjectUrl>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageIconUrl>https://www.blunderify.se/sourcypants64x64.png</PackageIconUrl>
+    <Description>JavaScript sourcemap parser for .NET standard</Description>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/PerfectlyNormal/Sourcypants</RepositoryUrl>
+    <AssemblyName>Sourcypants</AssemblyName>
+    <PackageId>Sourcypants</PackageId>
+    <PackageTags>Blunder;Sourcemap;Parser</PackageTags>
+    <Title>Sourcypants</Title>
+    <Version>$(Version)</Version>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
