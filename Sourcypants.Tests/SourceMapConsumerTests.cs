@@ -121,6 +121,45 @@ namespace Sourcypants.Tests
         }
 
         [Test]
+        [TestCase(1,  3, "/the/root/one.js", 1,  1, null)]
+        [TestCase(1,  6, "/the/root/one.js", 1,  5, null)]
+        [TestCase(1, 11, "/the/root/one.js", 1, 11, null)]
+        [TestCase(1, 20, "/the/root/one.js", 1, 21, "bar")]
+        [TestCase(1, 26, "/the/root/one.js", 2,  3, null)]
+        [TestCase(1, 30, "/the/root/one.js", 2, 10, "baz")]
+        [TestCase(1, 33, "/the/root/one.js", 2, 14, "bar")]
+        [TestCase(2,  4, "/the/root/two.js", 1,  1, null)]
+        [TestCase(2,  6, "/the/root/two.js", 1,  5, null)]
+        [TestCase(2, 17, "/the/root/two.js", 1, 11, null)]
+        [TestCase(2, 20, "/the/root/two.js", 1, 21, "n")]
+        [TestCase(2, 27, "/the/root/two.js", 2,  3, null)]
+        [TestCase(2, 28, "/the/root/two.js", 2, 10, "n")]
+        [TestCase(2, 29, "/the/root/two.js", 2, 10, "n")]
+        public void TestMappingTokensBackBiased(int sourceLine, int sourceCol, string file, int orgLine, int orgCol, string methodName)
+        {
+            // Force reset so we don't use the mocked decoder here
+            MappingDecoder.Default = null;
+
+            var consumer = new SourceMapConsumer(new SourceMapFile()
+            {
+                Version = 3,
+                File = "min.js",
+                Names = new [] { "bar", "baz", "n"},
+                SourceRoot = "/the/root",
+                Sources = new [] { "one.js", "two.js"},
+                Mappings = "CAAC,IAAI,IAAM,SAAUA,GAClB,OAAOC,IAAID;CCDb,IAAI,IAAM,SAAUE,GAClB,OAAOA"
+            });
+
+            var firstMap = consumer.OriginalPositionsFor(sourceLine, sourceCol);
+            Assert.That(firstMap, Is.Not.Null);
+            Assert.That(firstMap.Length, Is.EqualTo(1), "Should have 1 source line");
+            Assert.That(firstMap.All(x => x.LineNumber == orgLine), $"Original line number should be {orgLine}");
+            Assert.That(firstMap.All(x => x.Column == orgCol), $"Original column should be {orgCol}");
+            Assert.That(firstMap.All(x => x.File == file), $"Source file should be {file}");
+            Assert.That(firstMap.All(x => x.MethodName == methodName), $"Original method name should be {methodName}");
+        }
+
+        [Test]
         public void OriginalPositionsFor_ReturnsEmptyArray_IfNoMatchingSourceLines()
         {
             var consumer = new SourceMapConsumer(new SourceMapFile {Version = 3});

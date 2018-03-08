@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Sourcypants.Utils;
@@ -73,10 +74,26 @@ namespace Sourcypants
                 return new SourceReference[0];
             }
 
-            return generatedLine
-                .Segments
+            List<MappingSegment> hits;
+            var segments = generatedLine.Segments
                 .Where(x => x.SourceLineIndex.HasValue)
-                .Where(x => x.GeneratedColumnIndex == col)
+                .ToList();
+
+            // Exact matches are the greatest
+            if (segments.Any(s => s.GeneratedColumnIndex == col))
+            {
+                hits = segments.Where(s => s.GeneratedColumnIndex == col).ToList();
+            }
+            else
+            {
+                hits = new List<MappingSegment>
+                {
+                    segments
+                        .LastOrDefault(x => x.GeneratedColumnIndex < col)
+                };
+            }
+
+            return hits
                 .Select(x => new SourceReference
                 {
                     File = FileName(x.SourcesIndex),
