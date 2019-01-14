@@ -1,7 +1,5 @@
 # SourcyPants
 
-(Not to be confused with [saucy pants][saucypants])
-
 Simple source map parser for .NET Standard.
 Based on [SourceMapDotNet][SMDN], which titles itself as a "port of a small
 portion of Mozilla's source-map module to .NET intended for reading a source
